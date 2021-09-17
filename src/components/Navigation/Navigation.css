@@ -1,0 +1,53 @@
+.navigation {
+    display: flex;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    width: 212px;
+    margin-right: 364px;
+}
+
+.nav-links__link {
+    align-self: center;
+    text-decoration: none;
+    color: #000;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.nav-links__link_active {
+    font-weight: 500;
+}
+
+.account-link {
+    display: flex;
+}
+
+.account-link__name {
+    margin: 0;
+    margin-right: 13px;
+    align-self:center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.account-link__button {
+    align-self: center;
+}
+
+.account-link__button-block {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background: #F9F9F9;
+    border-radius: 6px;
+}
+
+.account-link__button-image {
+    position: absolute;
+    top: 8px;
+    left: 9.6px;
+}
