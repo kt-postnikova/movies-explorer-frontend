@@ -1,0 +1,59 @@
+.about-me__info {
+    display: grid;
+    grid-template-columns: 600px 270px;
+    grid-template-rows: 58px 18px 20px 26px 88px 99px 18px;
+    column-gap: 270px;
+    margin-top: 66px;
+    margin-bottom: 100px;
+}
+
+.about-me__header {
+    margin: 0;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    letter-spacing: -0.04em;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.about-me__subheader {
+    margin: 0;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.about-me__bio {
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+
+    grid-row-start: 5;
+    grid-row-end: 6;
+}
+
+.about-me__image {
+    grid-row-start: 1;
+    grid-column-end: 1;
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+
+.social {
+    grid-row-start: 7;
+    grid-row-end: 8;
+}
+
+.social__link {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    margin-right: 20px;
+}
