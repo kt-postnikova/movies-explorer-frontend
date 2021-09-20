@@ -7,10 +7,10 @@ import NavTab from '../NavTab/NavTab';
 function Header(params) {
     const userLocation = useLocation();
 
-    const isMovies = userLocation.pathname === '/movies';
+    const isMainHeader = userLocation.pathname === '/';
 
     const headerClassName = (
-        `${isMovies ? 'header-movies' : 'header'}`
+        `${isMainHeader ? 'header' : 'header-movies'}`
     )
 
     return (
@@ -20,9 +20,10 @@ function Header(params) {
 
                 <>
                     {
-                        userLocation.pathname === '/movies' ?
-                            <Navigation></Navigation> :
-                            <NavTab></NavTab>
+                        userLocation.pathname === '/' ?
+                            <NavTab></NavTab> :
+                            <Navigation></Navigation>
+
                     }
                 </>
 
