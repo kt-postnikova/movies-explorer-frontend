@@ -32,7 +32,6 @@
     text-align: right;
     border: none;
     outline: none;
-
 }
 
 .profile__input::placeholder {
@@ -50,6 +49,10 @@
     cursor: pointer;
 }
 
+.profile__button:hover {
+    opacity: 0.8;
+}
+
 .signout-button {
     width: 410px;
     font-size: 13px;
@@ -61,4 +64,30 @@
     color: #EE3465;
     margin-top: 16px;
     margin-bottom: 70px;
+}
+
+.signout-button:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 465px) {
+    .profile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 260px;
+    }
+    .profile__form {
+        width: 260px;
+        margin: 0 auto;
+    }
+    .profile__input {
+        width: 120px;
+    }
+    .profile__button {
+        width: 260px;
+    }
+    .signout-button {
+        width: 260px;
+    }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Profile(params) {
     return (
@@ -16,7 +17,9 @@ function Profile(params) {
                 </label>
                 <button className="profile__button">Редактировать</button>
             </form>
-            <button className="signout-button">Выйти из аккаунта</button>
+            <Link className="signout-button" to="/signin">
+                <button className="signout-button">Выйти из аккаунта</button>
+            </Link>
         </div>
     )
 }
