@@ -17,16 +17,13 @@ function Header(params) {
         <header className={headerClassName}>
             <div className="container header__container">
                 <Link to="/"><img className="header__logo" src={logo} alt="Логотип Movie Explorer" /></Link>
-
                 <>
                     {
                         userLocation.pathname === '/' ?
                             <NavTab></NavTab> :
                             <Navigation></Navigation>
-
                     }
                 </>
-
             </div>
         </header>
     )

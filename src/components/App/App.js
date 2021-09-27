@@ -44,7 +44,6 @@ function App() {
           <PageNotFound />
         </Route>
       </Switch>
-      {/* <Footer></Footer> */}
     </>
   );
 }
