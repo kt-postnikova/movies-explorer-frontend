@@ -1,4 +1,4 @@
-.register__container {
+.register {
     width: 396px;
     margin: 0 auto;
     margin-top: 70px;
@@ -74,4 +74,21 @@
     font-size: 14px;
     line-height: 17px;
     color: #2BE080;
+}
+
+@media screen and (max-width: 465px) {
+    .register {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form__input {
+        width: 260px;
+        margin: 10px auto;
+    }
+
+    .form__label {
+        margin: 0 auto;
+    }
 }
