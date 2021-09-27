@@ -31,8 +31,35 @@
     position: relative;
 }
 
+.portfolio__link:hover {
+    opacity: 0.8;
+}
+
 .portfolio__link-img {
     position: absolute;
     right: 0;
     margin-top: 19px;
+}
+
+@media screen and (max-width: 570px) {
+    .portfolio__name {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .portfolio {
+        margin-bottom: 70px;
+    }
+    .portfoilio__header {
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 40px;
+    }
+    .portfolio__link-img {
+        width: 18px;
+        height: 28px;
+        margin-top: 0;
+    }
 }
