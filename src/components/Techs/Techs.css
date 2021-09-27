@@ -43,3 +43,48 @@
     text-align: center;
     padding-top: 21px;
 }
+
+@media screen and (max-width: 740px) {
+    .techs-bricks {
+        grid-template-columns: repeat(4, 90px);
+        grid-template-rows: repeat(2,60px);
+        row-gap: 20px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .techs__subheader {
+        width: 430px;
+    }
+}
+
+@media screen and (max-width: 465px) {
+    .techs__subheader {
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .techs__header {
+        font-size: 30px;
+        line-height: 36px;
+        margin-top: 60px;
+        margin-bottom: 24px;
+    }
+    .techs__subheader {
+        font-size: 11px;
+        line-height: 16px;
+        width: 284px;
+        margin-bottom: 50px;
+    }
+    .tech-brick {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .techs-bricks {
+        grid-template-columns: repeat(2, 84px);
+        grid-template-rows: repeat(4,57px);
+        row-gap: 20px;
+        padding-bottom: 70px;
+    }
+}
