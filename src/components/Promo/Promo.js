@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import promoImage from '../../images/promoImage.png';
 
 function Promo(params) {
@@ -7,11 +6,13 @@ function Promo(params) {
         <section className="promo">
             <div className="container">
                 <div className="promo__block">
-                    <h1 className="promo__header">Учебный проект студента факультета<br /> Веб-разработки.</h1>
                     <img className="promo__image" src={promoImage} alt="Картинка web-глобуса" />
+                    <div className="promo__info">
+                        <h1 className="promo__header">Учебный проект студента факультета Веб-разработки.</h1>
+                        <p className="promo__subheader">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
+                        <button className="promo__button">Узнать больше</button>
+                    </div>
                 </div>
-                <p className="promo__subheader">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
-                <button className="promo__button">Узнать больше</button>
             </div>
         </section>
     )

@@ -1,20 +1,26 @@
 .promo {
     background-color: #5C5C5C;
+    padding-top: 75px;
 }
 
 .promo__block {
-    display: grid;
-    grid-template-columns: 640px 310px;
-    grid-template-rows: 174px 32px;
-    column-gap: 190px;
+    display: flex;
+    position: relative;
 }
 
 .promo__header {
+    width: 640px;
     font-weight: 400;
     color: #fff;
     font-size: 50px;
     margin: 0;
     margin-bottom: 36px;
+}
+
+.promo__image {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .promo__subheader {
@@ -24,7 +30,6 @@
     font-size: 13px;
     line-height: 16px;
     opacity: 0.5;
-    margin-bottom: 146px;
 }
 
 .promo__button {
@@ -41,4 +46,95 @@
     padding: 0;
     margin-bottom: 75px;
     cursor: pointer;
+    margin-top: 146px;
+}
+
+@media screen and (max-width: 1170px) {
+    .promo__header {
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .promo__header {
+        font-size: 30px;
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .promo {
+        padding-top: 140px;
+    }
+
+    .promo__block {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .promo__image {
+        width: 310px;
+        height: 304px;
+        position: static;
+        margin-bottom: 48px;
+    }
+
+    .promo__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .promo__header {
+        width: 680px;
+        font-size: 40px;
+        line-height: 50px;
+        text-align: center;
+        margin-bottom: 22px;
+    }
+
+    .promo__subheader {
+        text-align: center;
+        margin-bottom: 92px;
+    }
+
+    .promo__button {
+        margin-bottom: 76px;
+    }
+}
+
+@media screen and (max-width: 675px) {
+    .promo__header {
+        width: 540px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .promo {
+        padding-top: 70px;
+    }
+    .promo__image {
+        width: 210px;
+        height: 206px;
+        margin-bottom: 44px;
+    }
+    .promo__header {
+        width: 307px;
+        font-size: 30px;
+        line-height: 38px;
+        margin-bottom: 24px;
+    }
+    .promo__subheader {
+        margin-bottom: 0;
+    }
+    .promo__button {
+        margin-top: 80px;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 465px) {
+    .promo__header {
+        width: 350px;
+    }
 }
