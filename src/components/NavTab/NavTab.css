@@ -9,6 +9,14 @@
     margin-right: 30px;
 }
 
+.navtab__link:hover {
+    opacity: 0.8;
+}
+
+.navtab__button:hover {
+    opacity: 0.8;
+}
+
 .navtab__button {
     width: 76px;
     height: 32px;
@@ -22,4 +30,16 @@
     line-height: 16px;
     align-self: center;
     cursor: pointer;
+}
+
+@media screen and (max-width: 390px) {
+    .navtab__link {
+        font-size: 10px;
+        margin-right: 26px;
+    }
+    .navtab__button {
+        width: 54px;
+        height: 26px;
+        font-size: 10px;
+    }
 }
