@@ -8,6 +8,9 @@
 @import url('./components/Header/Header.css');
 @import url('./components/NavTab/NavTab.css');
 @import url('./components/Navigation/Navigation.css');
+@import url('./components/BurgerMenu/BurgerMenu.css');
+@import url('./components/AccountButton/AccountButton.css');
+@import url('./components/AccountButton/AccountButtonMenu/AccountButtonMenu.css');
 
 @import url('./components/Promo/Promo.css');
 @import url('./components/AboutProject/AboutProject.css');
