@@ -1,7 +1,6 @@
 import React from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 function Movies(params) {
@@ -10,7 +9,6 @@ function Movies(params) {
             <SearchForm></SearchForm>
             <FilterCheckbox></FilterCheckbox>
             <MoviesCardList></MoviesCardList>
-            <Preloader></Preloader>
         </>
     )
 }
