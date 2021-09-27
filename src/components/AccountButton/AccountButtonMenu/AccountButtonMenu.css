@@ -1,0 +1,31 @@
+.account-button-menu {
+    position: absolute;
+    bottom: 0;
+    left: 38%;
+    padding-bottom: 200px;
+}
+
+.account-button__link {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000;
+}
+
+.account-button__button {
+    margin-left: 13px;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+}
+
+@media screen and (max-width: 465px) {
+    .account-button-menu {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        padding-bottom: 200px;
+    }
+}
