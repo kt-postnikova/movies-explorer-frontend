@@ -9,15 +9,15 @@ function Register(params) {
             <h1 className="register__header">Добро пожаловать!</h1>
             <form className="form">
                 <label className="form__label">Имя
-                    <input className="form__input" />
+                    <input className="form__input" required />
                     <span className="form__input-error"></span>
                 </label>
                 <label className="form__label">E-mail
-                    <input className="form__input" />
+                    <input className="form__input" required />
                     <span className="form__input-error"></span>
                 </label>
                 <label className="form__label">Пароль
-                    <input className="form__input" />
+                    <input className="form__input" required />
                     <span className="form__input-error">Что-то пошло не так...</span>
                 </label>
                 <button className="form__button">Зарегистрироваться</button>
