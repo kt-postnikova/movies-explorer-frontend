@@ -9,9 +9,9 @@ function MoviesCardList(params) {
                 {/* <Preloader></Preloader> */}
                 <div className="movies-cards__list">
                     <MoviesCard></MoviesCard>
+                    <MoviesCard isActive="card__select_active"></MoviesCard>
                     <MoviesCard></MoviesCard>
-                    <MoviesCard></MoviesCard>
-                    <MoviesCard></MoviesCard>
+                    <MoviesCard isActive="card__select_active"></MoviesCard>
                     <MoviesCard></MoviesCard>
                     <MoviesCard></MoviesCard>
                     <MoviesCard></MoviesCard>
