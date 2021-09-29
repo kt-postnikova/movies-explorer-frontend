@@ -52,3 +52,9 @@
         grid-template-columns: repeat(1, 270px);
     }
 }
+
+@media screen and (max-width: 390px) {
+    .movies-cards__button {
+        width: 240px;
+    }
+}
