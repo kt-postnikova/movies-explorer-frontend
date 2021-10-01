@@ -1,0 +1,118 @@
+.burger-menu {
+  display: none;
+}
+
+.burger-menu__toggle {
+  opacity: 0;
+}
+
+.burger-menu__button {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.burger-menu__button > span,
+.burger-menu__button > span::before,
+.burger-menu__button > span::after {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 28px;
+  background-color: #000;
+}
+
+.burger-menu__button > span::before {
+  content: '';
+  top: -7px;
+}
+
+.burger-menu__button > span::after {
+  content: '';
+  top: 7px;
+}
+
+.burger-menu__box {
+  visibility: hidden;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  padding-top: 160px;
+  padding-right: 90px;
+  padding-left: 90px;
+  background-color: #fff;
+  box-shadow: 0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.burger-menu__item {
+  list-style: none;
+  text-align: center;
+  margin-bottom: 28px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.burger-menu__link {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.burger-menu__item:hover {
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+#burger-menu__toggle:checked ~ .burger-menu__button > span {
+  z-index: 2;
+  position: fixed;
+  top: 32px;
+  right: 22px;
+  transform: rotate(45deg);
+}
+
+#burger-menu__toggle:checked ~ .burger-menu__button > span::before {
+  top: 0;
+  transform: rotate(0);
+}
+
+#burger-menu__toggle:checked ~ .burger-menu__button > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+#burger-menu__toggle:checked ~ .burger-menu__box {
+  visibility: visible;
+  right: 0;
+}
+
+@media screen and (max-width: 850px) {
+  .burger-menu {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 465px) {
+  .burger-menu__box {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .burger-menu__button > span,
+  .burger-menu__button > span::before,
+  .burger-menu__button > span::after {
+    width: 22px;
+  }
+}
