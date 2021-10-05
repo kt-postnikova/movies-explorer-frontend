@@ -26,6 +26,8 @@
 
 .search-form__find-image {
     cursor: pointer;
+    border: none;
+    background-color: transparent;
 }
 
 .search-form__search-image:hover {
