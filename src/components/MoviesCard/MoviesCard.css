@@ -16,6 +16,13 @@
     row-gap: 10px;
 }
 
+.card__image {
+    width: 270px;
+    height: 151px;
+    border-radius:  10px 10px 0 0;
+    object-fit: cover;
+}
+
 .card__name {
     margin: 0;
     grid-column-start: 1;
