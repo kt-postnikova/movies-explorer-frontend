@@ -5,11 +5,11 @@ import findImage from '../../images/find.svg';
 function SearchForm(params) {
     return (
         <section className="search-form container">
-            <div className="search-form__container">
+            <form className="search-form__container" noValidate>
                 <img className="search-form__search-image" src={searchImage} alt="Иконка лупа" />
                 <input className="search-form__input" placeholder="Фильм" type="text" required />
                 <button className="search-form__find-image"><img src={findImage} alt="Иконка стрелка" /></button>
-            </div>
+            </form>
             <div className="line"></div>
         </section>
     )
