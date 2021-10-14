@@ -38,15 +38,37 @@
     color: #000;
 }
 
+.profile__input-error {
+    font-size: 10px;
+    line-height: 12px;
+    color: #EE3465;
+    margin-top: 10px;
+    width: 200px;
+    align-self:flex-end;
+    text-align: right;
+}
+
+.profile__message {
+    margin: 0;
+    margin-top: 100px;
+    margin-bottom: 150px;
+    text-align: center;
+    font-size: 13px;
+}
+
 .profile__button {
     width: 410px;
-    margin-top: 220px;
+    /* margin-top: 220px; */
     font-size: 13px;
     line-height: 16px;
     border: none;
     outline: none;
     background-color: transparent;
     cursor: pointer;
+}
+
+.profile__button:disabled {
+    cursor: default;
 }
 
 .profile__button:hover {
