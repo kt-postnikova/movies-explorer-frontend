@@ -1,30 +1,69 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
-// import Preloader from '../Preloader/Preloader';
+import Preloader from '../Preloader/Preloader';
 
-function MoviesCardList(params) {
+function MoviesCardList({ moviesList, savedMovies, noMovies, isLoading, onSave, onDelete }) {
+    const [moviesCount, setMoviesCount] = React.useState(12);
+
+    function checkMoviesLike(movieList) {
+        return savedMovies.find((savedMovie) => savedMovie.id === movieList.id)
+    }
+
+    function setCount(large, medium, small, huge) {
+        const width = window.screen.width;
+        if (width <= 1220 && width >= 960) {
+            setMoviesCount(large)
+        } else if (width <= 960 && width >= 600) {
+            setMoviesCount(medium)
+        } else if (width < 600) {
+            setMoviesCount(small)
+        } else if (width > 1220) {
+            setMoviesCount(huge)
+        }
+    }
+
+    function setPagination(params) {
+        const moviesOnPage = moviesCount;
+        setCount(moviesOnPage + 3, moviesOnPage + 2, moviesOnPage + 2, moviesOnPage + 4);
+    }
+
+    useEffect(() => {
+        setCount(9, 6, 5, 12);
+    }, [])
+
     return (
         <>
             <section className="movies-cards container">
-                {/* <Preloader></Preloader> */}
-                <div className="movies-cards__list">
-                    <MoviesCard></MoviesCard>
-                    <MoviesCard isActive="card__select_active"></MoviesCard>
-                    <MoviesCard></MoviesCard>
-                    <MoviesCard isActive="card__select_active"></MoviesCard>
-                    <MoviesCard></MoviesCard>
-                    <MoviesCard></MoviesCard>
-                    <MoviesCard></MoviesCard>
-                    <MoviesCard></MoviesCard>
-                    <MoviesCard></MoviesCard>
-                    <MoviesCard></MoviesCard>
-                    <MoviesCard></MoviesCard>
-                    <MoviesCard></MoviesCard>
-                </div>
+                {
+                    (noMovies) ? <h1 className="movies-cards__not-found">Нужно ввести ключевое слово</h1> :
+                        (isLoading) ? (
+                            <Preloader></Preloader>
+                        ) : (
+                            <div className="movies-cards__list">
+                                {
+                                    moviesList.length !== 0 ?
+                                        moviesList.slice(0, moviesCount).map((movie) => (
+                                            <MoviesCard
+                                                key={movie.id}
+                                                movie={movie}
+                                                savedMovies={checkMoviesLike(movie)}
+                                                onSave={onSave}
+                                                onDelete={onDelete}></MoviesCard>
+                                        )) :
+                                        <h1 className="movies-cards__not-found">Ничего не найдено</h1>
+                                }
+                            </div>
+                        )
+                }
             </section>
-            <div className="movies-cards__button-container">
-                <button className="movies-cards__button">Ещё</button>
-            </div>
+            {
+                moviesList &&
+                    (moviesList.length === 0 || moviesList.length < moviesCount) ? '' : (
+                    <div className="movies-cards__button-container">
+                        <button className="movies-cards__button" onClick={setPagination}>Ещё</button>
+                    </div>
+                )
+            }
         </>
     )
 }
