@@ -4,7 +4,7 @@ import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 import NavTab from '../NavTab/NavTab';
 
-function Header(params) {
+function Header({ loggedIn }) {
     const userLocation = useLocation();
 
     const isMainHeader = userLocation.pathname === '/';
@@ -19,9 +19,13 @@ function Header(params) {
                 <Link to="/"><img className="header__logo" src={logo} alt="Логотип Movie Explorer" /></Link>
                 <>
                     {
-                        userLocation.pathname === '/' ?
-                            <NavTab></NavTab> :
-                            <Navigation></Navigation>
+                        loggedIn ?
+                            <Navigation></Navigation> :
+                            <NavTab></NavTab>
+
+                        // userLocation.pathname === '/' ?
+                        //     <NavTab></NavTab> :
+                        //     <Navigation></Navigation>
                     }
                 </>
             </div>
