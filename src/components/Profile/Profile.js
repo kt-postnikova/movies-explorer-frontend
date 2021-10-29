@@ -23,8 +23,6 @@ function Profile({ onEditProfile, loggedIn, onSignOut, message }) {
         setIsValid(target.closest("form").checkValidity());
     };
 
-    console.log(errors);
-
     function handleRegisterSubmit(e) {
         e.preventDefault();
 
