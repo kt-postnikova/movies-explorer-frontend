@@ -60,8 +60,16 @@
     border: 3px solid #fff;
     background-color: #F9F9F9;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
+    cursor: pointer;
 }
 
 .card__select_active {
     background-color: #2BE080;
+}
+
+.card__delete {
+    background-image: url('../../images/delete.svg');
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
