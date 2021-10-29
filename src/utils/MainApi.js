@@ -1,7 +1,7 @@
 const getResponse = response => response.ok ? response.json() : Promise.reject(`Ошибка ${response.status}`)
 
 const LOCAL_URL = 'http://localhost:3000';
-const PROD_URL = 'https://api.movie-explorer.nomoredomains.club/signup';
+// const PROD_URL = 'https://api.movie-explorer.nomoredomains.club/signup';
 
 export const register = (email, password, name) => {
     return fetch(`${LOCAL_URL}/signup`, {
@@ -53,7 +53,18 @@ export const editUserInfo = (userInfo) => {
         .then(getResponse)
 }
 
-export const selectMovie = (movie) => {
+export const getSavedMovies = () => {
+    return fetch(`${LOCAL_URL}/movies`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${JSON.parse(localStorage.getItem('token'))}`
+        },
+    })
+        .then(getResponse)
+}
+
+export const saveMovie = (movie) => {
     return fetch(`${LOCAL_URL}/movies`, {
         method: 'POST',
         headers: {
@@ -61,7 +72,7 @@ export const selectMovie = (movie) => {
             'Authorization': `${JSON.parse(localStorage.getItem('token'))}`
         },
         body: JSON.stringify({
-            country: movie.country,
+            country: movie.country || 'Неизвестно',
             director: movie.director,
             duration: movie.duration,
             year: movie.year,
@@ -71,8 +82,19 @@ export const selectMovie = (movie) => {
             thumbnail: `${'https://api.nomoreparties.co' + movie.image.formats.thumbnail.url}`,
             nameRU: movie.nameRU,
             nameEN: movie.nameEN,
-            movieId: movie.id,
+            id: movie.id,
         })
+    })
+        .then(getResponse)
+}
+
+export const deleteMovie = (movieId) => {
+    return fetch(`${LOCAL_URL}/movies/${movieId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${JSON.parse(localStorage.getItem('token'))}`
+        }
     })
         .then(getResponse)
 }
