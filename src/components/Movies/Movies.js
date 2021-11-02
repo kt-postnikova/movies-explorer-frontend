@@ -13,9 +13,15 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
     const [isLoading, setLoading] = React.useState(false);
     const [noMovies, setNoMovies] = React.useState(false);
 
+    const [isShortMovies, setShortMovies] = React.useState(false);
+
     /* забираем значение из инпута */
     function handleQueryChange(e) {
         setQuery(e.target.value);
+    }
+
+    function handleCheckboxChecked(e) {
+        setShortMovies(e.target.checked);
     }
 
     /* получаем отфильтрованные фильмы по сабмиту */
@@ -26,7 +32,7 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
             setLoading(true);
             MoviesApi.getMovies()
                 .then((moviesArray) => {
-                    const filteredMovies = filterMovies(moviesArray, query);
+                    const filteredMovies = filterMovies(moviesArray, query, isShortMovies);
                     localStorage.setItem('movies', JSON.stringify(filteredMovies))
                     setFilteredMovies(filteredMovies);
                     localStorage.setItem('query', JSON.stringify(query));
@@ -53,7 +59,7 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
         <>
             <Header loggedIn={loggedIn}></Header>
             <SearchForm onSubmit={handleGetMoviesSubmit} onChange={handleQueryChange} query={query}></SearchForm>
-            <FilterCheckbox></FilterCheckbox>
+            <FilterCheckbox onChecked={handleCheckboxChecked}></FilterCheckbox>
             <MoviesCardList
                 moviesList={filteredMovies}
                 savedMovies={savedMovies}
