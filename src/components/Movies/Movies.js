@@ -11,6 +11,7 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
     const [filteredMovies, setFilteredMovies] = React.useState([]);
     const [query, setQuery] = React.useState('');
     const [isLoading, setLoading] = React.useState(false);
+    const [noQuery, setNoQuery] = React.useState(false);
     const [noMovies, setNoMovies] = React.useState(false);
 
     const [isShortMovies, setShortMovies] = React.useState(false);
@@ -27,7 +28,7 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
     /* получаем отфильтрованные фильмы по сабмиту */
     function handleGetMoviesSubmit() {
         if (query === '') {
-            setNoMovies(true);
+            setNoQuery(true);
         } else {
             setLoading(true);
             MoviesApi.getMovies()
@@ -36,24 +37,29 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
                     localStorage.setItem('movies', JSON.stringify(filteredMovies))
                     setFilteredMovies(filteredMovies);
                     localStorage.setItem('query', JSON.stringify(query));
+                    if (filteredMovies.length === 0) {
+                        setNoMovies(true)
+                    } else {
+                        setNoMovies(false)
+                    }
                 })
                 .catch((err) => console.log(err))
                 .finally(() => {
                     setLoading(false);
-                    setNoMovies(false);
+                    setNoQuery(false);
                 })
         }
     }
 
     /* После одновления странницы запрос и отфильтрованные фильмы не пропадают */
-    React.useEffect(() => {
-        const movies = JSON.parse(localStorage.getItem('movies'));
-        const queryValue = JSON.parse(localStorage.getItem('query'));
-        if (movies) {
-            setFilteredMovies(movies);
-            setQuery(queryValue);
-        }
-    }, [])
+    // React.useEffect(() => {
+    //     const movies = JSON.parse(localStorage.getItem('movies'));
+    //     const queryValue = JSON.parse(localStorage.getItem('query'));
+    //     if (movies) {
+    //         setFilteredMovies(movies);
+    //         setQuery(queryValue);
+    //     }
+    // }, [])
 
     return (
         <>
@@ -64,6 +70,7 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
                 moviesList={filteredMovies}
                 savedMovies={savedMovies}
                 isLoading={isLoading}
+                noQuery={noQuery}
                 noMovies={noMovies}
                 onSave={onSave}
                 onDelete={onDelete}>
