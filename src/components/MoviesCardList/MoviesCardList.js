@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
-function MoviesCardList({ moviesList, savedMovies, noMovies, isLoading, onSave, onDelete }) {
+function MoviesCardList({ moviesList, savedMovies, noQuery, noMovies, isLoading, onSave, onDelete }) {
     const [moviesCount, setMoviesCount] = React.useState(12);
 
     function checkMoviesLike(movieList) {
@@ -31,17 +31,18 @@ function MoviesCardList({ moviesList, savedMovies, noMovies, isLoading, onSave, 
         setCount(9, 6, 5, 12);
     }, [])
 
+
     return (
         <>
             <section className="movies-cards container">
                 {
-                    (noMovies) ? <h1 className="movies-cards__not-found">Нужно ввести ключевое слово</h1> :
-                        (isLoading) ? (
-                            <Preloader></Preloader>
-                        ) : (
-                            <div className="movies-cards__list">
-                                {
-                                    moviesList.length !== 0 ?
+                    (noQuery) ? <h1 className="movies-cards__not-found">Нужно ввести ключевое слово</h1> :
+                        (noMovies) ? <h1 className="movies-cards__not-found">Ничего не найдено</h1> :
+                            (isLoading) ? (
+                                <Preloader></Preloader>
+                            ) : (
+                                <div className="movies-cards__list">
+                                    {
                                         moviesList.slice(0, moviesCount).map((movie) => (
                                             <MoviesCard
                                                 key={movie.id}
@@ -49,11 +50,10 @@ function MoviesCardList({ moviesList, savedMovies, noMovies, isLoading, onSave, 
                                                 savedMovies={checkMoviesLike(movie)}
                                                 onSave={onSave}
                                                 onDelete={onDelete}></MoviesCard>
-                                        )) :
-                                        <h1 className="movies-cards__not-found">Ничего не найдено</h1>
-                                }
-                            </div>
-                        )
+                                        ))
+                                    }
+                                </div>
+                            )
                 }
             </section>
             {
