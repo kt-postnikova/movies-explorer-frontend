@@ -25,14 +25,14 @@ function MoviesCard({ movie, savedMovies, onSave, onDelete }) {
     }
 
     return (
-        <div className="card" onClick={handleTrailerLinkShow}>
+        <div className="card">
             {
                 isClick &&
                 <div className="card__trailer">
                     <a className="card__trailer-link" href={movie.trailerLink} target="_blank" rel="noreferrer">{movie.trailerLink}</a>
                 </div>
             }
-            <img className="card__image" src={(movie.image.url) ? `https://api.nomoreparties.co${movie.image.url}` : movie.image} alt="Постер фильма" />
+            <img className="card__image" onClick={handleTrailerLinkShow} src={(movie.image.url) ? `https://api.nomoreparties.co${movie.image.url}` : movie.image} alt="Постер фильма" />
             <div className="card__info">
                 <p className="card__name">{movie.nameRU}</p>
                 <button type="button" className={isSavedMoviesPage ? 'card__delete' : cardLikeButtonClassName} onClick={savedMovies ? handleMovieDelete : handleMovieSave}></button>
