@@ -1,7 +1,7 @@
 const getResponse = response => response.ok ? response.json() : Promise.reject(`Ошибка ${response.status}`)
 
 // const LOCAL_URL = 'http://localhost:3000';
-const PROD_URL = 'https://api.movie-explorer.nomoredomains.club/signup';
+const PROD_URL = 'https://api.movie-explorer.nomoredomains.club';
 
 export const register = (email, password, name) => {
     return fetch(`${PROD_URL}/signup`, {
