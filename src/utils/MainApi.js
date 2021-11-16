@@ -1,10 +1,10 @@
 const getResponse = response => response.ok ? response.json() : Promise.reject(`Ошибка ${response.status}`)
 
-const LOCAL_URL = 'http://localhost:3000';
-// const PROD_URL = 'https://api.movie-explorer.nomoredomains.club/signup';
+// const LOCAL_URL = 'http://localhost:3000';
+const PROD_URL = 'https://api.movie-explorer.nomoredomains.club/signup';
 
 export const register = (email, password, name) => {
-    return fetch(`${LOCAL_URL}/signup`, {
+    return fetch(`${PROD_URL}/signup`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -16,7 +16,7 @@ export const register = (email, password, name) => {
 };
 
 export const authorize = (email, password) => {
-    return fetch(`${LOCAL_URL}/signin`, {
+    return fetch(`${PROD_URL}/signin`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -28,7 +28,7 @@ export const authorize = (email, password) => {
 }
 
 export const getContent = () => {
-    return fetch(`${LOCAL_URL}/users/me`, {
+    return fetch(`${PROD_URL}/users/me`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export const getContent = () => {
 }
 
 export const editUserInfo = (userInfo) => {
-    return fetch(`${LOCAL_URL}/users/me`, {
+    return fetch(`${PROD_URL}/users/me`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export const editUserInfo = (userInfo) => {
 }
 
 export const getSavedMovies = () => {
-    return fetch(`${LOCAL_URL}/movies`, {
+    return fetch(`${PROD_URL}/movies`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -65,7 +65,7 @@ export const getSavedMovies = () => {
 }
 
 export const saveMovie = (movie) => {
-    return fetch(`${LOCAL_URL}/movies`, {
+    return fetch(`${PROD_URL}/movies`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export const saveMovie = (movie) => {
 }
 
 export const deleteMovie = (movieId) => {
-    return fetch(`${LOCAL_URL}/movies/${movieId}`, {
+    return fetch(`${PROD_URL}/movies/${movieId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
