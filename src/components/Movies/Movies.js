@@ -16,6 +16,8 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
 
     const [isShortMovies, setShortMovies] = React.useState(false);
 
+    const [error, setError] = React.useState(false);
+
     /* забираем значение из инпута */
     function handleQueryChange(e) {
         setQuery(e.target.value);
@@ -43,7 +45,7 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
                         setNoMovies(false)
                     }
                 })
-                .catch((err) => console.log(err))
+                .catch((err) => setError(true))
                 .finally(() => {
                     setLoading(false);
                     setNoQuery(false);
@@ -66,15 +68,18 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
             <Header loggedIn={loggedIn}></Header>
             <SearchForm onSubmit={handleGetMoviesSubmit} onChange={handleQueryChange} query={query}></SearchForm>
             <FilterCheckbox onChecked={handleCheckboxChecked}></FilterCheckbox>
-            <MoviesCardList
-                moviesList={filteredMovies}
-                savedMovies={savedMovies}
-                isLoading={isLoading}
-                noQuery={noQuery}
-                noMovies={noMovies}
-                onSave={onSave}
-                onDelete={onDelete}>
-            </MoviesCardList>
+            {
+                error ? <h1 className="error container">Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз</h1> :
+                    <MoviesCardList
+                        moviesList={filteredMovies}
+                        savedMovies={savedMovies}
+                        isLoading={isLoading}
+                        noQuery={noQuery}
+                        noMovies={noMovies}
+                        onSave={onSave}
+                        onDelete={onDelete}>
+                    </MoviesCardList>
+            }
             <Footer></Footer>
         </>
     )
