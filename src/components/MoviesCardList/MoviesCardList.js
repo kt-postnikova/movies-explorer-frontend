@@ -55,15 +55,15 @@ function MoviesCardList({ moviesList, savedMovies, noQuery, noMovies, isLoading,
                                 </div>
                             )
                 }
+                {
+                    moviesList &&
+                        (moviesList.length === 0 || moviesList.length < moviesCount) ? '' : (
+                        <div className="movies-cards__button-container">
+                            <button className="movies-cards__button" onClick={setPagination}>Ещё</button>
+                        </div>
+                    )
+                }
             </section>
-            {
-                moviesList &&
-                    (moviesList.length === 0 || moviesList.length < moviesCount) ? '' : (
-                    <div className="movies-cards__button-container">
-                        <button className="movies-cards__button" onClick={setPagination}>Ещё</button>
-                    </div>
-                )
-            }
         </>
     )
 }
