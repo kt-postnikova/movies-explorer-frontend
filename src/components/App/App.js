@@ -135,11 +135,13 @@ function App() {
 
   /* Хук получения массива сохраненных фильмов */
   React.useEffect(() => {
-    MainApi.getSavedMovies()
-      .then((res) => {
-        setSavedMovies(res.data);
-      })
-  }, [])
+    if (loggedIn) {
+      MainApi.getSavedMovies()
+        .then((res) => {
+          setSavedMovies(res.data);
+        })
+    }
+  }, [loggedIn])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
