@@ -98,16 +98,16 @@ function App() {
   /* Удаление из сохраненных фильмов */
   function handleDeleteMovies(movie) {
     const savedMovie = savedMovies.find((item) => {
-      if (item.id === movie.id) {
+      if (item._id === movie._id) {
         return item
       } else {
         return savedMovies
       }
     })
-    MainApi.deleteMovie(savedMovie.id)
+    MainApi.deleteMovie(savedMovie._id)
       .then((res) => {
         const newMoviesList = savedMovies.filter((item) => {
-          if (movie.id === item.id) {
+          if (movie._id === item._id) {
             return false
           } else {
             return true

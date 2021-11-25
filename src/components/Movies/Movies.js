@@ -53,15 +53,15 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
         }
     }
 
-    /* После одновления странницы запрос и отфильтрованные фильмы не пропадают */
-    // React.useEffect(() => {
-    //     const movies = JSON.parse(localStorage.getItem('movies'));
-    //     const queryValue = JSON.parse(localStorage.getItem('query'));
-    //     if (movies) {
-    //         setFilteredMovies(movies);
-    //         setQuery(queryValue);
-    //     }
-    // }, [])
+    /* После обновления страницы запрос и отфильтрованные фильмы не пропадают */
+    React.useEffect(() => {
+        const movies = JSON.parse(localStorage.getItem('movies'));
+        const queryValue = JSON.parse(localStorage.getItem('query'));
+        if (movies) {
+            setFilteredMovies(movies);
+            setQuery(queryValue);
+        }
+    }, [])
 
     return (
         <>
