@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import { filterMovies } from '../../utils/filterMovies';
+
+import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { saveMovie } from '../../utils/MainApi';
 
 function SavedMovies({ loggedIn, savedMovies, onDelete }) {
 
@@ -13,6 +16,8 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
     const [query, setQuery] = React.useState('');
 
     const [isShortMovies, setShortMovies] = React.useState(false);
+
+    const currentUser = React.useContext(CurrentUserContext);
 
     /* забираем значение из инпута */
     function handleQueryChange(e) {
@@ -27,12 +32,17 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
     function handleGetMoviesSubmit() {
         const filteredMovies = filterMovies(savedMovies, query, isShortMovies);
         if (filteredMovies.length === 0) {
-            console.log(filteredMovies);
+            // console.log(filteredMovies);
         } else {
             setFilteredMovies(filteredMovies);
             setSelectedMovies(filteredMovies)
         }
     }
+
+    React.useEffect(() => {
+        const movies = savedMovies.filter((saveMovies) => saveMovies.owner === currentUser._id)
+        setSelectedMovies(movies);
+    }, [currentUser, savedMovies])
 
     return (
         <>
