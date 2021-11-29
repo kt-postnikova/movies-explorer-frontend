@@ -26,9 +26,8 @@ function App() {
     MainApi.register(email, password, name)
       .then((res) => {
         setMessage(res.message);
-        setLoggedIn(true);
         setTimeout(() => {
-          history.push('/movies');
+          history.push('/signin');
           setMessage('');
         }, 1000)
       })
@@ -128,6 +127,7 @@ function App() {
     if (loggedIn) {
       MainApi.getContent()
         .then((res) => {
+          console.log(res);
           setCurrentUser(res)
         })
     }
