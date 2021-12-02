@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import AccountButton from '../AccountButton/AccountButton';
 
-function Navigation(params) {
+function Navigation() {
     const userLocation = useLocation();
 
     return (

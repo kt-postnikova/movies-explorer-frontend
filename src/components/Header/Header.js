@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import NavTab from '../NavTab/NavTab';
 import Logo from '../Logo/Logo';
+import AccountButton from '../AccountButton/AccountButton';
 
 function Header({ loggedIn }) {
     const userLocation = useLocation();
@@ -19,8 +20,8 @@ function Header({ loggedIn }) {
                 <Logo></Logo>
                 <>
                     {
-                        (loggedIn && !isMainHeader) ?
-                            <Navigation></Navigation> :
+                        (loggedIn) ?
+                            <Navigation><AccountButton></AccountButton></Navigation> :
                             <NavTab></NavTab>
 
                         // userLocation.pathname === '/' ?
