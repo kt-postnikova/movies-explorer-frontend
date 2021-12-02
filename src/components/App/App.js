@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Profiler } from 'react';
 import { Route, Redirect, Switch, useHistory } from 'react-router-dom';
 import '../../index.css';
 import Main from '../Main/Main';
@@ -27,7 +27,9 @@ function App() {
       .then((res) => {
         setMessage(res.message);
         setTimeout(() => {
-          history.push('/signin');
+          localStorage.setItem('token', JSON.stringify(res.token))
+          setLoggedIn(true);
+          history.push('/movies');
           setMessage('');
         }, 1000)
       })
@@ -127,7 +129,6 @@ function App() {
     if (loggedIn) {
       MainApi.getContent()
         .then((res) => {
-          console.log(res);
           setCurrentUser(res)
         })
     }
@@ -143,37 +144,37 @@ function App() {
     }
   }, [loggedIn])
 
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
         <Route exact path="/">
-          {loggedIn ? (<Redirect to="/movies" />) : (<Redirect to="/" />)}
           <Main loggedIn={loggedIn}></Main>
           <Footer></Footer>
         </Route>
-        <ProtectedRoute
-          path="/movies"
-          savedMovies={savedMovies}
-          loggedIn={loggedIn}
-          onSave={handleSaveMovies}
-          onDelete={handleDeleteMovies}
-          component={Movies}>
-        </ProtectedRoute>
-        <ProtectedRoute
-          path="/saved-movies"
-          savedMovies={savedMovies}
-          onDelete={handleDeleteMovies}
-          loggedIn={loggedIn}
-          component={SavedMovies}>
-        </ProtectedRoute>
-        <ProtectedRoute
-          path="/profile"
-          loggedIn={loggedIn}
-          component={Profile}
-          onEditProfile={handleEditUserInfo}
-          onSignOut={signOut}
-          message={message}>
-        </ProtectedRoute>
+        <Route path="/movies">
+          <Movies
+            savedMovies={savedMovies}
+            loggedIn={loggedIn}
+            onSave={handleSaveMovies}
+            onDelete={handleDeleteMovies}>
+          </Movies>
+        </Route>
+        <Route path="/saved-movies">
+          <SavedMovies
+            savedMovies={savedMovies}
+            onDelete={handleDeleteMovies}
+            loggedIn={loggedIn}>
+          </SavedMovies>
+        </Route>
+        <Route path="/profile">
+          <Profile
+            loggedIn={loggedIn}
+            onEditProfile={handleEditUserInfo}
+            onSignOut={signOut}
+            message={message}>
+          </Profile>
+        </Route>
         <Route path="/signin">
           <Login onLogin={handleAuthSubmit} message={message}></Login>
         </Route>
