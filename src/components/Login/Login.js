@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../images/logo.svg';
 import Form from '../Form/Form';
+import Logo from '../Logo/Logo';
 
 function Login({ onLogin, message }) {
     const [values, setValues] = React.useState({
@@ -28,7 +27,7 @@ function Login({ onLogin, message }) {
 
     return (
         <div className="register">
-            <Link to="/signup"><img src={logo} alt="Логотип" /></Link>
+            <Logo></Logo>
             <h1 className="register__header">Рады видеть!</h1>
             <Form
                 name="login"

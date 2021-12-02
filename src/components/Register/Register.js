@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../images/logo.svg';
 import Form from '../Form/Form';
+import Logo from '../Logo/Logo';
 
 function Register({ onRegister, message }) {
 
@@ -30,7 +29,7 @@ function Register({ onRegister, message }) {
 
     return (
         <div className="register">
-            <Link to="/signup"><img src={logo} alt="Логотип" /></Link>
+            <Logo></Logo>
             <h1 className="register__header">Добро пожаловать!</h1>
             <Form name="register" button="Зарегистрироваться" onSubmit={handleRegisterSubmit} isFormValid={isValid} message={message} question="Уже зарегистрированы?" link="/signin" linkName="Войти">
                 <label className="form__label">Имя

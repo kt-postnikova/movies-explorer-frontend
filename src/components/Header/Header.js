@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 import NavTab from '../NavTab/NavTab';
+import Logo from '../Logo/Logo';
 
 function Header({ loggedIn }) {
     const userLocation = useLocation();
@@ -16,10 +16,10 @@ function Header({ loggedIn }) {
     return (
         <header className={headerClassName}>
             <div className="container header__container">
-                <Link to="/"><img className="header__logo" src={logo} alt="Логотип Movie Explorer" /></Link>
+                <Logo></Logo>
                 <>
                     {
-                        loggedIn ?
+                        (loggedIn && !isMainHeader) ?
                             <Navigation></Navigation> :
                             <NavTab></NavTab>
 
