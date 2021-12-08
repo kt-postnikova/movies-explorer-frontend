@@ -1,36 +1,43 @@
 import React, { useEffect } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
+import { screenSizes } from '../../utils/utils';
 
 function MoviesCardList({ moviesList, savedMovies, noQuery, noMovies, isLoading, onSave, onDelete }) {
-    const [moviesCount, setMoviesCount] = React.useState(12);
+    const [moviesCount, setMoviesCount] = React.useState(0);
 
     function checkMoviesLike(movieList) {
         return savedMovies.find((savedMovie) => savedMovie.id === movieList.id)
     }
 
-    function setCount(large, medium, small, huge) {
-        const width = window.screen.width;
-        if (width <= 1220 && width >= 960) {
-            setMoviesCount(large)
-        } else if (width <= 960 && width >= 600) {
-            setMoviesCount(medium)
-        } else if (width < 600) {
-            setMoviesCount(small)
-        } else if (width > 1220) {
-            setMoviesCount(huge)
+    const screenWidth = window.screen.width;
+    function setCount() {
+        if (screenWidth > 1220) {
+            setMoviesCount(screenSizes.large.cards.onPage)
+        } else if (screenWidth <= 1220 && screenWidth >= 960) {
+            setMoviesCount(screenSizes.medium.cards.onPage)
+        } else if (screenWidth <= 960 && screenWidth > 600) {
+            setMoviesCount(screenSizes.small.cards.onPage)
+        } else if (screenWidth <= 600) {
+            setMoviesCount(screenSizes.extra.cards.onPage)
         }
     }
 
-    function setPagination(params) {
-        const moviesOnPage = moviesCount;
-        setCount(moviesOnPage + 3, moviesOnPage + 2, moviesOnPage + 2, moviesOnPage + 4);
+    function handleMoviesSetMore() {
+        if (screenWidth > 1220) {
+            setMoviesCount(moviesCount + screenSizes.large.cards.perPage)
+        } else if (screenWidth <= 1220 && screenWidth >= 960) {
+            setMoviesCount(moviesCount + screenSizes.medium.cards.perPage)
+        } else if (screenWidth <= 960 && screenWidth > 600) {
+            setMoviesCount(moviesCount + screenSizes.small.cards.perPage)
+        } else if (screenWidth <= 600) {
+            setMoviesCount(moviesCount + screenSizes.extra.cards.perPage)
+        }
     }
 
     useEffect(() => {
-        setCount(9, 6, 5, 12);
-    }, [])
-
+        setCount();
+    }, [screenWidth])
 
     return (
         <>
@@ -59,7 +66,7 @@ function MoviesCardList({ moviesList, savedMovies, noQuery, noMovies, isLoading,
                     moviesList &&
                         (moviesList.length === 0 || moviesList.length < moviesCount) ? '' : (
                         <div className="movies-cards__button-container">
-                            <button className="movies-cards__button" onClick={setPagination}>Ещё</button>
+                            <button className="movies-cards__button" onClick={handleMoviesSetMore}>Ещё</button>
                         </div>
                     )
                 }
