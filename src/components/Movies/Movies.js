@@ -5,7 +5,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import * as MoviesApi from '../../utils/MoviesApi';
-import { filterMovies } from '../../utils/filterMovies';
+import { filterMovies } from '../../utils/utils';
 
 function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
     const [filteredMovies, setFilteredMovies] = React.useState([]);

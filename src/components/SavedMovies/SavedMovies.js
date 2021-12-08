@@ -4,7 +4,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
-import { filterMovies } from '../../utils/filterMovies';
+import { filterMovies } from '../../utils/utils';
 
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 import { saveMovie } from '../../utils/MainApi';

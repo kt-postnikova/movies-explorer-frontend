@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router';
-import { convertDuration } from '../../utils/convertDuration';
+import { convertDuration } from '../../utils/utils';
 
 function MoviesCard({ movie, savedMovies, onSave, onDelete }) {
     const userLocation = useLocation();
