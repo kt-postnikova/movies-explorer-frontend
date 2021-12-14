@@ -71,7 +71,7 @@
     cursor: default;
 }
 
-.profile__button:hover {
+.profile__button:hover:enabled {
     opacity: 0.8;
 }
 

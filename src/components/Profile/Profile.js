@@ -8,8 +8,8 @@ function Profile({ onEditProfile, loggedIn, onSignOut, message }) {
     const currentUser = React.useContext(CurrentUserContext);
 
     const [values, setValues] = React.useState({
-        name: currentUser.name,
-        email: currentUser.email
+        name: currentUser.name || '',
+        email: currentUser.email || ''
     });
     const [errors, setErrors] = React.useState({});
     const [isValid, setIsValid] = React.useState(false);
@@ -26,9 +26,23 @@ function Profile({ onEditProfile, loggedIn, onSignOut, message }) {
     function handleRegisterSubmit(e) {
         e.preventDefault();
 
-        onEditProfile(values)
+        onEditProfile(values);
     }
 
+    React.useEffect(() => {
+        if (currentUser) {
+            setValues({
+                name: currentUser.name || '',
+                email: currentUser.email || ''
+            })
+        }
+    }, [currentUser])
+
+    React.useEffect(() => {
+        if (currentUser.name === values.name && currentUser.email === values.email) {
+            setIsValid(false)
+        }
+    }, [isValid, currentUser, values])
 
     return (
         <>
@@ -38,13 +52,13 @@ function Profile({ onEditProfile, loggedIn, onSignOut, message }) {
                 <form className="form" onSubmit={handleRegisterSubmit} >
                     <label className="profile__label">
                         <span className="profile__name">Имя</span>
-                        <input className="profile__input" value={values.name} onChange={handleChange} name="name" type="text" placeholder={currentUser.name} minLength="2" maxLength="30" />
+                        <input className="profile__input" value={values.name} onChange={handleChange} name="name" type="text" minLength="2" maxLength="30" />
                     </label>
                     <span className="profile__input-error">{errors.name}</span>
                     <div className="line"></div>
                     <label className="profile__label">
                         <span className="profile__name">Email</span>
-                        <input className="profile__input" value={values.email} onChange={handleChange} name="email" type="email" placeholder={currentUser.email} />
+                        <input className="profile__input" value={values.email} onChange={handleChange} name="email" type="email" />
                     </label>
                     <span className="profile__input-error">{errors.email}</span>
                     <p className="profile__message">{message}</p>
