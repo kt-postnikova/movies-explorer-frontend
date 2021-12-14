@@ -32,7 +32,6 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
     function handleGetMoviesSubmit() {
         const filteredMovies = filterMovies(savedMovies, query, isShortMovies);
         if (filteredMovies.length === 0) {
-            // console.log(filteredMovies);
         } else {
             setFilteredMovies(filteredMovies);
             setSelectedMovies(filteredMovies)

@@ -1,5 +1,5 @@
-import React, { Profiler } from 'react';
-import { Route, Redirect, Switch, useHistory } from 'react-router-dom';
+import React from 'react';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import '../../index.css';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -9,7 +9,6 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Movies from '../Movies/Movies';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import ProtectedRoute from '../ProtectedRoute';
 import * as MainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 

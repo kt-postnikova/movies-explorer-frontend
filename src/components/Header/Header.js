@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import NavTab from '../NavTab/NavTab';
 import Logo from '../Logo/Logo';
@@ -23,10 +23,6 @@ function Header({ loggedIn }) {
                         (loggedIn) ?
                             <Navigation><AccountButton></AccountButton></Navigation> :
                             <NavTab></NavTab>
-
-                        // userLocation.pathname === '/' ?
-                        //     <NavTab></NavTab> :
-                        //     <Navigation></Navigation>
                     }
                 </>
             </div>
