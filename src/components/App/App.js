@@ -36,6 +36,8 @@ function App() {
       .catch((err) => {
         if (err === 'Ошибка 409') {
           setMessage('Пользователь с таким email уже существует!');
+        } else if (err === 'Ошибка 400') {
+          setMessage('Неверно указан email или пароль!');
         }
       })
   }
@@ -54,7 +56,7 @@ function App() {
         }, 1000)
       })
       .catch((err) => {
-        if (err === 'Ошибка 401') {
+        if (err === 'Ошибка 400') {
           setMessage('Неверно указан email или пароль!');
         }
       })
@@ -83,6 +85,9 @@ function App() {
       .then((res) => {
         setMessage(res.message);
         setCurrentUser(Object.assign(currentUser, userInfo));
+        setTimeout(() => {
+          setMessage('');
+        }, 2000)
       })
       .catch((err) => console.log(err))
   }
