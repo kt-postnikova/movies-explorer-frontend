@@ -11,10 +11,14 @@ export const filterMovies = (moviesArray, query, isShortMovie) => {
         const userMovie = query.toLowerCase().trim();
         return nameRU.indexOf(userMovie) !== -1 || nameEN.indexOf(userMovie) !== -1;
     })
-    if (isShortMovie) {
-        return filteredMovies.filter((movie) => movie.duration < 40)
-    }
+    // if (isShortMovie) {
+    //     return filteredMovies.filter((movie) => movie.duration < 40)
+    // }
     return filteredMovies;
+}
+
+export const filterMoviesByDuration = (filtredMovies) => {
+    return filtredMovies.filter((movie) => movie.duration < 40)
 }
 
 export const screenSizes = {
