@@ -39,6 +39,7 @@ function MoviesCardList({ moviesList, savedMovies, noQuery, noMovies, isLoading,
         setCount();
     }, [screenWidth])
 
+
     return (
         <>
             <section className="movies-cards container">
@@ -50,6 +51,7 @@ function MoviesCardList({ moviesList, savedMovies, noQuery, noMovies, isLoading,
                             ) : (
                                 <div className="movies-cards__list">
                                     {
+                                        moviesList &&
                                         moviesList.slice(0, moviesCount).map((movie) => (
                                             <MoviesCard
                                                 key={movie.id}
@@ -64,11 +66,10 @@ function MoviesCardList({ moviesList, savedMovies, noQuery, noMovies, isLoading,
                 }
                 {
                     moviesList &&
-                        (moviesList.length === 0 || moviesList.length < moviesCount) ? '' : (
-                        <div className="movies-cards__button-container">
-                            <button className="movies-cards__button" onClick={handleMoviesSetMore}>Ещё</button>
-                        </div>
-                    )
+                    (!(moviesList.length === 0 || moviesList.length < moviesCount)) &&
+                    <div className="movies-cards__button-container">
+                        <button className="movies-cards__button" onClick={handleMoviesSetMore}>Ещё</button>
+                    </div>
                 }
             </section>
         </>
