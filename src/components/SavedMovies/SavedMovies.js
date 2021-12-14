@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
@@ -7,7 +7,6 @@ import Footer from '../Footer/Footer';
 import { filterMovies } from '../../utils/utils';
 
 import { CurrentUserContext } from '../../context/CurrentUserContext';
-import { saveMovie } from '../../utils/MainApi';
 
 function SavedMovies({ loggedIn, savedMovies, onDelete }) {
 
