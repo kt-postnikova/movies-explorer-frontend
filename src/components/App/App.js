@@ -146,7 +146,7 @@ function App() {
           setSavedMovies(res.data);
         })
     }
-  }, [loggedIn, savedMovies])
+  }, [loggedIn])
 
 
   return (
