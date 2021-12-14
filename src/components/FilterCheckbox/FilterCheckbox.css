@@ -21,6 +21,7 @@
 
 .checkbox__label input:checked ~ .checkbox__checkmark {
     background-color: #2BE080;
+    outline: none;
 }
 
 .checkbox__label input:checked ~ .checkbox__checkmark:after {
