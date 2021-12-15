@@ -57,7 +57,7 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
     React.useEffect(() => {
         const movies = JSON.parse(localStorage.getItem('movies'));
         const queryValue = JSON.parse(localStorage.getItem('query'));
-        const shortMoviesCheckbox = JSON.parse(localStorage.getItem('shortMovies-checkbox'));
+        const shortMoviesCheckbox = JSON.parse(localStorage.getItem('shortMovies-checkbox(movies)'));
         if (movies) {
             setFilteredMovies(movies);
             setQuery(queryValue);
@@ -70,10 +70,10 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
         if (isShortMovies) {
             const shortMovies = filterMoviesByDuration(movies);
             setFilteredMovies(shortMovies);
-            localStorage.setItem('shortMovies-checkbox', JSON.stringify(true))
+            localStorage.setItem('shortMovies-checkbox(movies)', JSON.stringify(true))
         } else {
             setFilteredMovies(movies);
-            localStorage.setItem('shortMovies-checkbox', JSON.stringify(false))
+            localStorage.setItem('shortMovies-checkbox(movies)', JSON.stringify(false))
         }
     }, [isShortMovies])
 
