@@ -4,7 +4,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
-import { filterMovies } from '../../utils/utils';
+import { filterMovies, filterMoviesByDuration } from '../../utils/utils';
 
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 
@@ -29,7 +29,7 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
 
     /* получаем отфильтрованные фильмы по сабмиту */
     function handleGetMoviesSubmit() {
-        const filteredMovies = filterMovies(savedMovies, query, isShortMovies);
+        const filteredMovies = filterMovies(savedMovies, query);
         if (filteredMovies.length === 0) {
         } else {
             setFilteredMovies(filteredMovies);
@@ -40,13 +40,26 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
     React.useEffect(() => {
         const movies = savedMovies.filter((saveMovies) => saveMovies.owner === currentUser._id)
         setSelectedMovies(movies);
+        localStorage.setItem('saved-movies', JSON.stringify(movies))
     }, [currentUser, savedMovies])
+
+    React.useEffect(() => {
+        const savedMovies = JSON.parse(localStorage.getItem('saved-movies'));
+        if (isShortMovies) {
+            const shortMovies = filterMoviesByDuration(savedMovies);
+            setSelectedMovies(shortMovies);
+            localStorage.setItem('shortMovies-checkbox(saved-movies)', JSON.stringify(true))
+        } else {
+            setSelectedMovies(savedMovies);
+            localStorage.setItem('shortMovies-checkbox(saved-movies)', JSON.stringify(false))
+        }
+    }, [isShortMovies])
 
     return (
         <>
             <Header loggedIn={loggedIn}></Header>
             <SearchForm onSubmit={handleGetMoviesSubmit} onChange={handleQueryChange} query={query}></SearchForm>
-            <FilterCheckbox onChecked={handleCheckboxChecked}></FilterCheckbox>
+            <FilterCheckbox onChecked={handleCheckboxChecked} isChecked={isShortMovies}></FilterCheckbox>
             <MoviesCardList savedMovies={savedMovies} moviesList={selectedMovies} onDelete={onDelete}></MoviesCardList>
             <Footer></Footer>
         </>
