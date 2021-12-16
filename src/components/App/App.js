@@ -102,22 +102,11 @@ function App() {
 
   /* Удаление из сохраненных фильмов */
   function handleDeleteMovies(movie) {
-    const savedMovie = savedMovies.find((item) => {
-      if (item._id === movie._id) {
-        return item
-      } else {
-        return savedMovies
-      }
-    })
+    const savedMovie = savedMovies.find((item) => item.id === movie.id)
+    console.log(savedMovie);
     MainApi.deleteMovie(savedMovie._id)
       .then((res) => {
-        const newMoviesList = savedMovies.filter((item) => {
-          if (movie._id === item._id) {
-            return false
-          } else {
-            return true
-          }
-        })
+        const newMoviesList = savedMovies.filter((item) => savedMovie._id !== item._id)
         setSavedMovies(newMoviesList)
       })
       .catch((err) => console.log(err))
