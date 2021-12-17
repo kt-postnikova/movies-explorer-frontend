@@ -11,6 +11,7 @@ import Movies from '../Movies/Movies';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import * as MainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../context/CurrentUserContext';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 function App() {
   const [message, setMessage] = React.useState('');
@@ -169,9 +170,11 @@ function App() {
           </Profile>
         </Route>
         <Route path="/signin">
+          {loggedIn && <Redirect to="/movies"></Redirect>}
           <Login onLogin={handleAuthSubmit} message={message}></Login>
         </Route>
         <Route path="/signup">
+          {loggedIn && <Redirect to="/movies"></Redirect>}
           <Register onRegister={handleRegisterSubmit} message={message}></Register>
         </Route>
         <Route path="*">
