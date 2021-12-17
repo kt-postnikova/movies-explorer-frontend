@@ -1,10 +1,10 @@
 const getResponse = response => response.ok ? response.json() : Promise.reject(`Ошибка ${response.status}`)
 
-// const LOCAL_URL = 'http://localhost:3000';
-const PROD_URL = 'https://api.movie-explorer.nomoredomains.rocks';
+const API_URL = 'http://localhost:3000';
+// const API_URL = 'https://api.movie-explorer.nomoredomains.rocks';
 
 export const register = (email, password, name) => {
-    return fetch(`${PROD_URL}/signup`, {
+    return fetch(`${API_URL}/signup`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -17,7 +17,7 @@ export const register = (email, password, name) => {
 };
 
 export const authorize = (email, password) => {
-    return fetch(`${PROD_URL}/signin`, {
+    return fetch(`${API_URL}/signin`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -30,7 +30,7 @@ export const authorize = (email, password) => {
 }
 
 export const getContent = () => {
-    return fetch(`${PROD_URL}/users/me`, {
+    return fetch(`${API_URL}/users/me`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -42,7 +42,7 @@ export const getContent = () => {
 }
 
 export const editUserInfo = (userInfo) => {
-    return fetch(`${PROD_URL}/users/me`, {
+    return fetch(`${API_URL}/users/me`, {
         method: 'PATCH',
         credentials: 'include',
         headers: {
@@ -58,7 +58,7 @@ export const editUserInfo = (userInfo) => {
 }
 
 export const getSavedMovies = () => {
-    return fetch(`${PROD_URL}/movies`, {
+    return fetch(`${API_URL}/movies`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -70,7 +70,7 @@ export const getSavedMovies = () => {
 }
 
 export const saveMovie = (movie) => {
-    return fetch(`${PROD_URL}/movies`, {
+    return fetch(`${API_URL}/movies`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -95,7 +95,7 @@ export const saveMovie = (movie) => {
 }
 
 export const deleteMovie = (movieId) => {
-    return fetch(`${PROD_URL}/movies/${movieId}`, {
+    return fetch(`${API_URL}/movies/${movieId}`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {
