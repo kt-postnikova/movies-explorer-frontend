@@ -37,8 +37,15 @@ function Login({ onLogin, message }) {
                 break;
         }
         setValues({ ...values, [name]: value });
-        setIsValid(target.closest("form").checkValidity());
     };
+
+    React.useEffect(() => {
+        if (values.email === '' || values.password === '' || errors.email === 'Введите корректный email' || values.password.length < 8) {
+            setIsValid(false);
+        } else {
+            setIsValid(true)
+        }
+    }, [values, errors])
 
     function handleAuthSubmit(e) {
         e.preventDefault();

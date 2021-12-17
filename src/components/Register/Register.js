@@ -46,8 +46,15 @@ function Register({ onRegister, message }) {
                 break;
         }
         setValues({ ...values, [name]: value });
-        setIsValid(target.closest("form").checkValidity());
     };
+
+    React.useEffect(() => {
+        if (values.name === '' || values.email === '' || values.password === '' || errors.email === 'Введите корректный email' || values.password.length < 8) {
+            setIsValid(false);
+        } else {
+            setIsValid(true)
+        }
+    }, [values, errors])
 
     function handleRegisterSubmit(e) {
         e.preventDefault();
