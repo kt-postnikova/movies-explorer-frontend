@@ -10,12 +10,33 @@ function Login({ onLogin, message }) {
     const [errors, setErrors] = React.useState({});
     const [isValid, setIsValid] = React.useState(false);
 
+    const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
     const handleChange = (event) => {
         const target = event.target;
         const value = target.value;
         const name = target.name;
+        switch (name) {
+            case "email":
+                if (value === '') {
+                    setErrors({ ...errors, [name]: 'Поле не может быть пустым' });
+                } else if (!EMAIL_REGEX.test(value)) {
+                    setErrors({ ...errors, [name]: 'Введите корректный email' });
+                } else {
+                    setErrors('');
+                }
+                break;
+            case "password":
+                if (value === '') {
+                    setErrors({ ...errors, [name]: 'Поле не может быть пустым' });
+                } else {
+                    setErrors('');
+                }
+                break;
+            default:
+                break;
+        }
         setValues({ ...values, [name]: value });
-        setErrors({ ...errors, [name]: target.validationMessage });
         setIsValid(target.closest("form").checkValidity());
     };
 
