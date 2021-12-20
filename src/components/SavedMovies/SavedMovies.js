@@ -13,6 +13,8 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
     const [selectedMovies, setSelectedMovies] = React.useState(savedMovies);
     const [filteredMovies, setFilteredMovies] = React.useState(selectedMovies);
     const [query, setQuery] = React.useState('');
+    const [noQuery, setNoQuery] = React.useState(false);
+    const [noMovies, setNoMovies] = React.useState(false);
 
     const [isShortMovies, setShortMovies] = React.useState(false);
 
@@ -29,11 +31,18 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
 
     /* получаем отфильтрованные фильмы по сабмиту */
     function handleGetMoviesSubmit() {
-        const filteredMovies = filterMovies(savedMovies, query);
-        if (filteredMovies.length === 0) {
+        if (query === '') {
+            setNoQuery(true);
         } else {
-            setFilteredMovies(filteredMovies);
-            setSelectedMovies(filteredMovies)
+            setNoQuery(false);
+            const filteredMovies = filterMovies(savedMovies, query);
+            if (filteredMovies.length === 0) {
+                setNoMovies(true);
+            } else {
+                setNoMovies(false);
+                setFilteredMovies(filteredMovies);
+                setSelectedMovies(filteredMovies);
+            }
         }
     }
 
@@ -60,7 +69,7 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
             <Header loggedIn={loggedIn}></Header>
             <SearchForm onSubmit={handleGetMoviesSubmit} onChange={handleQueryChange} query={query}></SearchForm>
             <FilterCheckbox onChecked={handleCheckboxChecked} isChecked={isShortMovies}></FilterCheckbox>
-            <MoviesCardList savedMovies={savedMovies} moviesList={selectedMovies} onDelete={onDelete}></MoviesCardList>
+            <MoviesCardList savedMovies={savedMovies} moviesList={selectedMovies} onDelete={onDelete} noQuery={noQuery} noMovies={noMovies}></MoviesCardList>
             <Footer></Footer>
         </>
     )
