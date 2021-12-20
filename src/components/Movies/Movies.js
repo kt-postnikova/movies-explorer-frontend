@@ -13,9 +13,7 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
     const [isLoading, setLoading] = React.useState(false);
     const [noQuery, setNoQuery] = React.useState(false);
     const [noMovies, setNoMovies] = React.useState(false);
-
     const [isShortMovies, setShortMovies] = React.useState(false);
-
     const [error, setError] = React.useState(false);
 
     /* забираем значение из инпута */
@@ -36,13 +34,13 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
             MoviesApi.getMovies()
                 .then((moviesArray) => {
                     const filteredMovies = filterMovies(moviesArray, query);
-                    localStorage.setItem('movies', JSON.stringify(filteredMovies))
+                    localStorage.setItem('movies', JSON.stringify(filteredMovies));
                     setFilteredMovies(filteredMovies);
                     localStorage.setItem('query', JSON.stringify(query));
                     if (filteredMovies.length === 0) {
-                        setNoMovies(true)
+                        setNoMovies(true);
                     } else {
-                        setNoMovies(false)
+                        setNoMovies(false);
                     }
                 })
                 .catch((err) => setError(true))
@@ -70,10 +68,10 @@ function Movies({ loggedIn, onSave, onDelete, savedMovies }) {
         if (isShortMovies) {
             const shortMovies = filterMoviesByDuration(movies);
             setFilteredMovies(shortMovies);
-            localStorage.setItem('shortMovies-checkbox(movies)', JSON.stringify(true))
+            localStorage.setItem('shortMovies-checkbox(movies)', JSON.stringify(true));
         } else {
             setFilteredMovies(movies);
-            localStorage.setItem('shortMovies-checkbox(movies)', JSON.stringify(false))
+            localStorage.setItem('shortMovies-checkbox(movies)', JSON.stringify(false));
         }
     }, [isShortMovies])
 

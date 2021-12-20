@@ -49,7 +49,7 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
     React.useEffect(() => {
         const movies = savedMovies.filter((saveMovies) => saveMovies.owner === currentUser._id)
         setSelectedMovies(movies);
-        localStorage.setItem('saved-movies', JSON.stringify(movies))
+        localStorage.setItem('saved-movies', JSON.stringify(movies));
     }, [currentUser, savedMovies])
 
     React.useEffect(() => {
@@ -57,10 +57,10 @@ function SavedMovies({ loggedIn, savedMovies, onDelete }) {
         if (isShortMovies) {
             const shortMovies = filterMoviesByDuration(savedMovies);
             setSelectedMovies(shortMovies);
-            localStorage.setItem('shortMovies-checkbox(saved-movies)', JSON.stringify(true))
+            localStorage.setItem('shortMovies-checkbox(saved-movies)', JSON.stringify(true));
         } else {
             setSelectedMovies(savedMovies);
-            localStorage.setItem('shortMovies-checkbox(saved-movies)', JSON.stringify(false))
+            localStorage.setItem('shortMovies-checkbox(saved-movies)', JSON.stringify(false));
         }
     }, [isShortMovies])
 

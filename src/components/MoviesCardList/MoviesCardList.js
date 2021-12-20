@@ -8,30 +8,30 @@ function MoviesCardList({ moviesList, savedMovies, noQuery, noMovies, isLoading,
     const screenWidth = window.innerWidth;
 
     function checkMoviesLike(movieList) {
-        return savedMovies.find((savedMovie) => savedMovie.id === movieList.id)
+        return savedMovies.find((savedMovie) => savedMovie.id === movieList.id);
     }
 
     function setCount() {
         if (screenWidth > 1220) {
-            setMoviesCount(screenSizes.large.cards.onPage)
+            setMoviesCount(screenSizes.large.cards.onPage);
         } else if (screenWidth <= 1220 && screenWidth >= 960) {
-            setMoviesCount(screenSizes.medium.cards.onPage)
+            setMoviesCount(screenSizes.medium.cards.onPage);
         } else if (screenWidth <= 960 && screenWidth > 600) {
-            setMoviesCount(screenSizes.small.cards.onPage)
+            setMoviesCount(screenSizes.small.cards.onPage);
         } else if (screenWidth <= 600) {
-            setMoviesCount(screenSizes.extra.cards.onPage)
+            setMoviesCount(screenSizes.extra.cards.onPage);
         }
     }
 
     function handleMoviesSetMore() {
         if (screenWidth > 1220) {
-            setMoviesCount(moviesCount + screenSizes.large.cards.perPage)
+            setMoviesCount(moviesCount + screenSizes.large.cards.perPage);
         } else if (screenWidth <= 1220 && screenWidth >= 960) {
-            setMoviesCount(moviesCount + screenSizes.medium.cards.perPage)
+            setMoviesCount(moviesCount + screenSizes.medium.cards.perPage);
         } else if (screenWidth <= 960 && screenWidth > 600) {
-            setMoviesCount(moviesCount + screenSizes.small.cards.perPage)
+            setMoviesCount(moviesCount + screenSizes.small.cards.perPage);
         } else if (screenWidth <= 600) {
-            setMoviesCount(moviesCount + screenSizes.extra.cards.perPage)
+            setMoviesCount(moviesCount + screenSizes.extra.cards.perPage);
         }
     }
 
@@ -75,13 +75,6 @@ function MoviesCardList({ moviesList, savedMovies, noQuery, noMovies, isLoading,
                                 </>
                             )
                 }
-                {/* {
-                    moviesList &&
-                    (!(moviesList.length === 0 || moviesList.length <= moviesCount)) &&
-                    <div className="movies-cards__button-container">
-                        <button className="movies-cards__button" onClick={handleMoviesSetMore}>Ещё</button>
-                    </div>
-                } */}
             </section>
         </>
     )

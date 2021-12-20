@@ -18,7 +18,6 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [savedMovies, setSavedMovies] = React.useState([]);
-
   const [error, setError] = React.useState('');
 
   const history = useHistory();
@@ -54,7 +53,7 @@ function App() {
     MainApi.authorize(password, email)
       .then((res) => {
         if (res.token) {
-          localStorage.setItem('token', JSON.stringify(res.token))
+          localStorage.setItem('token', JSON.stringify(res.token));
           setLoggedIn(true);
         }
         setTimeout(() => {
@@ -107,26 +106,25 @@ function App() {
   function handleSaveMovies(movie) {
     MainApi.saveMovie(movie)
       .then((selectedMovie) => {
-        setSavedMovies([selectedMovie.movie, ...savedMovies])
+        setSavedMovies([selectedMovie.movie, ...savedMovies]);
       })
       .catch((err) => console.log(err))
   }
 
   /* Удаление из сохраненных фильмов */
   function handleDeleteMovies(movie) {
-    const savedMovie = savedMovies.find((item) => item.id === movie.id)
-    console.log(savedMovie);
+    const savedMovie = savedMovies.find((item) => item.id === movie.id);
     MainApi.deleteMovie(savedMovie._id)
       .then((res) => {
-        const newMoviesList = savedMovies.filter((item) => savedMovie._id !== item._id)
-        setSavedMovies(newMoviesList)
+        const newMoviesList = savedMovies.filter((item) => savedMovie._id !== item._id);
+        setSavedMovies(newMoviesList);
       })
       .catch((err) => console.log(err))
   }
 
   /* Хук проверки состояния авторизованности пользователя */
   React.useEffect(() => {
-    tokenCheck()
+    tokenCheck();
   }, [])
 
   /* Хук получения данных пользователя, если залогинен */
@@ -134,7 +132,7 @@ function App() {
     if (loggedIn) {
       MainApi.getContent()
         .then((res) => {
-          setCurrentUser(res)
+          setCurrentUser(res);
         })
     }
   }, [loggedIn])
