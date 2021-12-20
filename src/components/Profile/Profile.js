@@ -27,6 +27,7 @@ function Profile({ onEditProfile, loggedIn, onSignOut, message }) {
         e.preventDefault();
 
         onEditProfile(values);
+        setIsValid(false)
     }
 
     React.useEffect(() => {
@@ -37,12 +38,6 @@ function Profile({ onEditProfile, loggedIn, onSignOut, message }) {
             })
         }
     }, [currentUser])
-
-    React.useEffect(() => {
-        if (currentUser.name === values.name && currentUser.email === values.email) {
-            setIsValid(false)
-        }
-    }, [isValid, currentUser, values])
 
     return (
         <>

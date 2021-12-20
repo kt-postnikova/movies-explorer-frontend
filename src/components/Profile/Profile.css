@@ -51,9 +51,10 @@
 .profile__message {
     margin: 0;
     margin-top: 100px;
-    margin-bottom: 150px;
+    margin-bottom: 20px;
     text-align: center;
     font-size: 13px;
+    color: #2BE080
 }
 
 .profile__button {
@@ -64,6 +65,7 @@
     outline: none;
     background-color: transparent;
     cursor: pointer;
+    margin-bottom: 16px;
 }
 
 .profile__button:disabled {
@@ -83,7 +85,6 @@
     background-color: transparent;
     cursor: pointer;
     color: #EE3465;
-    margin-top: 16px;
     margin-bottom: 70px;
 }
 
