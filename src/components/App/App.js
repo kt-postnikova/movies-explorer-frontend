@@ -19,6 +19,8 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [savedMovies, setSavedMovies] = React.useState([]);
 
+  const [error, setError] = React.useState('');
+
   const history = useHistory();
 
   /* Регистрация пользователя */
@@ -26,6 +28,7 @@ function App() {
     MainApi.register(email, password, name)
       .then((res) => {
         setMessage(res.message);
+        setError('');
         setTimeout(() => {
           localStorage.setItem('token', JSON.stringify(res.token))
           setLoggedIn(true);
@@ -36,6 +39,10 @@ function App() {
       .catch((err) => {
         if (err === 'Ошибка 409') {
           setMessage('Пользователь с таким email уже существует!');
+          setError(err);
+          setTimeout(() => {
+            setMessage('');
+          }, 2000)
         } else if (err === 'Ошибка 400') {
           setMessage('Неверно указан email или пароль!');
         }
@@ -56,8 +63,12 @@ function App() {
         }, 1000)
       })
       .catch((err) => {
-        if (err === 'Ошибка 400') {
+        if (err === 'Ошибка 401') {
           setMessage('Неверно указан email или пароль!');
+          setError(err);
+          setTimeout(() => {
+            setMessage('');
+          }, 2000)
         }
       })
   }
@@ -171,11 +182,11 @@ function App() {
         </Route>
         <Route path="/signin">
           {loggedIn && <Redirect to="/movies"></Redirect>}
-          <Login onLogin={handleAuthSubmit} message={message}></Login>
+          <Login onLogin={handleAuthSubmit} message={message} error={error}></Login>
         </Route>
         <Route path="/signup">
           {loggedIn && <Redirect to="/movies"></Redirect>}
-          <Register onRegister={handleRegisterSubmit} message={message}></Register>
+          <Register onRegister={handleRegisterSubmit} message={message} error={error}></Register>
         </Route>
         <Route path="*">
           <PageNotFound />
