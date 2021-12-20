@@ -5,12 +5,12 @@ import { screenSizes } from '../../utils/utils';
 
 function MoviesCardList({ moviesList, savedMovies, noQuery, noMovies, isLoading, onSave, onDelete }) {
     const [moviesCount, setMoviesCount] = React.useState(0);
+    const screenWidth = window.innerWidth;
 
     function checkMoviesLike(movieList) {
         return savedMovies.find((savedMovie) => savedMovie.id === movieList.id)
     }
 
-    const screenWidth = window.screen.width;
     function setCount() {
         if (screenWidth > 1220) {
             setMoviesCount(screenSizes.large.cards.onPage)
@@ -49,28 +49,39 @@ function MoviesCardList({ moviesList, savedMovies, noQuery, noMovies, isLoading,
                             (isLoading) ? (
                                 <Preloader></Preloader>
                             ) : (
-                                <div className="movies-cards__list">
-                                    {
-                                        moviesList &&
-                                        moviesList.slice(0, moviesCount).map((movie) => (
-                                            <MoviesCard
-                                                key={movie.id}
-                                                movie={movie}
-                                                savedMovies={checkMoviesLike(movie)}
-                                                onSave={onSave}
-                                                onDelete={onDelete}></MoviesCard>
-                                        ))
-                                    }
-                                </div>
+                                <>
+                                    <div className="movies-cards__list">
+                                        {
+                                            moviesList &&
+                                            moviesList.slice(0, moviesCount).map((movie) => (
+                                                <MoviesCard
+                                                    key={movie.id}
+                                                    movie={movie}
+                                                    savedMovies={checkMoviesLike(movie)}
+                                                    onSave={onSave}
+                                                    onDelete={onDelete}></MoviesCard>
+                                            ))
+                                        }
+                                    </div>
+                                    <div>
+                                        {
+                                            moviesList &&
+                                            (!(moviesList.length === 0 || moviesList.length <= moviesCount)) &&
+                                            <div className="movies-cards__button-container">
+                                                <button className="movies-cards__button" onClick={handleMoviesSetMore}>Ещё</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </>
                             )
                 }
-                {
+                {/* {
                     moviesList &&
                     (!(moviesList.length === 0 || moviesList.length <= moviesCount)) &&
                     <div className="movies-cards__button-container">
                         <button className="movies-cards__button" onClick={handleMoviesSetMore}>Ещё</button>
                     </div>
-                }
+                } */}
             </section>
         </>
     )
