@@ -2,7 +2,7 @@ import React from 'react';
 import Form from '../Form/Form';
 import Logo from '../Logo/Logo';
 
-function Register({ onRegister, message }) {
+function Register({ onRegister, message, error }) {
 
     const [values, setValues] = React.useState({
         name: '',
@@ -38,6 +38,8 @@ function Register({ onRegister, message }) {
             case "password":
                 if (value === '') {
                     setErrors({ ...errors, [name]: 'Поле не может быть пустым' });
+                } else if (value.length < 8) {
+                    setErrors({ ...errors, [name]: 'Длина пароля должна быть больше 8 символов' });
                 } else {
                     setErrors('');
                 }
@@ -66,7 +68,7 @@ function Register({ onRegister, message }) {
         <div className="register">
             <Logo></Logo>
             <h1 className="register__header">Добро пожаловать!</h1>
-            <Form name="register" button="Зарегистрироваться" onSubmit={handleRegisterSubmit} isFormValid={isValid} message={message} question="Уже зарегистрированы?" link="/signin" linkName="Войти">
+            <Form name="register" button="Зарегистрироваться" onSubmit={handleRegisterSubmit} isFormValid={isValid} message={message} error={error} question="Уже зарегистрированы?" link="/signin" linkName="Войти">
                 <label className="form__label">Имя
                     <input className="form__input" value={values.name} onChange={handleChange} name="name" required minLength="2" maxLength="30" />
                     <span className="form__input-error">{errors.name}</span>

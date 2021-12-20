@@ -36,6 +36,15 @@
     margin-top: 69px;
     text-align: center;
     font-size: 13px;
+    color: #2BE080
+}
+
+.form__message_error {
+    margin: 0;
+    margin-top: 69px;
+    text-align: center;
+    font-size: 13px;
+    color: #FF004C
 }
 
 .form__button {

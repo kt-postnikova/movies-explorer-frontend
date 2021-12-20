@@ -2,7 +2,7 @@ import React from 'react';
 import Form from '../Form/Form';
 import Logo from '../Logo/Logo';
 
-function Login({ onLogin, message }) {
+function Login({ onLogin, message, error }) {
     const [values, setValues] = React.useState({
         email: '',
         password: ''
@@ -29,6 +29,8 @@ function Login({ onLogin, message }) {
             case "password":
                 if (value === '') {
                     setErrors({ ...errors, [name]: 'Поле не может быть пустым' });
+                } else if (value.length < 8) {
+                    setErrors({ ...errors, [name]: 'Длина пароля должна быть больше 8 символов' });
                 } else {
                     setErrors('');
                 }
@@ -65,7 +67,8 @@ function Login({ onLogin, message }) {
                 question="Еще не зарегистрированы?"
                 link="/signup"
                 linkName="Регистрация"
-                message={message}>
+                message={message}
+                error={error}>
                 <label className="form__label">E-mail
                     <input className="form__input" type="email" name="email" value={values.email} onChange={handleChange} required />
                     <span className="form__input-error">{errors.email}</span>
