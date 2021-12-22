@@ -1,28 +1,87 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../images/logo.svg';
+import Form from '../Form/Form';
+import Logo from '../Logo/Logo';
 
-function Register(params) {
+function Register({ onRegister, message, error }) {
+
+    const [values, setValues] = React.useState({
+        name: '',
+        email: '',
+        password: ''
+    });
+    const [errors, setErrors] = React.useState({});
+    const [isValid, setIsValid] = React.useState(false);
+
+    const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    const handleChange = (event) => {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        switch (name) {
+            case "name":
+                if (value === '') {
+                    setErrors({ ...errors, [name]: 'Поле не может быть пустым' });
+                } else {
+                    setErrors('');
+                }
+                break;
+            case "email":
+                if (value === '') {
+                    setErrors({ ...errors, [name]: 'Поле не может быть пустым' });
+                } else if (!EMAIL_REGEX.test(value)) {
+                    setErrors({ ...errors, [name]: 'Введите корректный email' });
+                } else {
+                    setErrors('');
+                }
+                break;
+            case "password":
+                if (value === '') {
+                    setErrors({ ...errors, [name]: 'Поле не может быть пустым' });
+                } else if (value.length < 8) {
+                    setErrors({ ...errors, [name]: 'Длина пароля должна быть больше 8 символов' });
+                } else {
+                    setErrors('');
+                }
+                break;
+            default:
+                break;
+        }
+        setValues({ ...values, [name]: value });
+    };
+
+    React.useEffect(() => {
+        if (values.name === '' || values.email === '' || values.password === '' || errors.email === 'Введите корректный email' || values.password.length < 8) {
+            setIsValid(false);
+        } else {
+            setIsValid(true)
+        }
+    }, [values, errors])
+
+    function handleRegisterSubmit(e) {
+        e.preventDefault();
+
+        onRegister(values.email, values.password, values.name)
+    }
+
     return (
         <div className="register">
-            <Link to="/signup"><img src={logo} alt="Логотип" /></Link>
+            <Logo></Logo>
             <h1 className="register__header">Добро пожаловать!</h1>
-            <form className="form">
+            <Form name="register" button="Зарегистрироваться" onSubmit={handleRegisterSubmit} isFormValid={isValid} message={message} error={error} question="Уже зарегистрированы?" link="/signin" linkName="Войти">
                 <label className="form__label">Имя
-                    <input className="form__input" required />
-                    <span className="form__input-error"></span>
+                    <input className="form__input" value={values.name} onChange={handleChange} name="name" required minLength="2" maxLength="30" />
+                    <span className="form__input-error">{errors.name}</span>
                 </label>
                 <label className="form__label">E-mail
-                    <input className="form__input" required />
-                    <span className="form__input-error"></span>
+                    <input className="form__input" type="email" name="email" onChange={handleChange} value={values.email} required />
+                    <span className="form__input-error">{errors.email}</span>
                 </label>
                 <label className="form__label">Пароль
-                    <input className="form__input" required />
-                    <span className="form__input-error">Что-то пошло не так...</span>
+                    <input className="form__input" type="password" name="password" onChange={handleChange} value={values.password} required minLength="8" />
+                    <span className="form__input-error">{errors.password}</span>
                 </label>
-                <button className="form__button">Зарегистрироваться</button>
-                <p className="form__signin">Уже зарегистрированы? <Link to="/signin" className="form__signin-link">Войти</Link></p>
-            </form>
+            </Form>
         </div>
     )
 }

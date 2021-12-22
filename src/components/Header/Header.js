@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import logo from '../../images/logo.svg';
+import { useLocation } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import NavTab from '../NavTab/NavTab';
+import Logo from '../Logo/Logo';
+import AccountButton from '../AccountButton/AccountButton';
 
-function Header(params) {
+function Header({ loggedIn }) {
     const userLocation = useLocation();
 
     const isMainHeader = userLocation.pathname === '/';
@@ -16,12 +17,12 @@ function Header(params) {
     return (
         <header className={headerClassName}>
             <div className="container header__container">
-                <Link to="/"><img className="header__logo" src={logo} alt="Логотип Movie Explorer" /></Link>
+                <Logo></Logo>
                 <>
                     {
-                        userLocation.pathname === '/' ?
-                            <NavTab></NavTab> :
-                            <Navigation></Navigation>
+                        (loggedIn) ?
+                            <Navigation><AccountButton></AccountButton></Navigation> :
+                            <NavTab></NavTab>
                     }
                 </>
             </div>

@@ -1,4 +1,5 @@
 .search-form {
+    margin-top: 70px;
     margin-bottom: 29px;
 }
 
@@ -26,6 +27,8 @@
 
 .search-form__find-image {
     cursor: pointer;
+    border: none;
+    background-color: transparent;
 }
 
 .search-form__search-image:hover {

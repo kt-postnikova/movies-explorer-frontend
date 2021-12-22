@@ -3,6 +3,25 @@
     background: #FDFDFD;
     box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
+    cursor: pointer;
+
+    position: relative;
+}
+
+.card__trailer {
+    position: absolute;
+    top: 70px;
+    left: 10px;
+    background-color: #fff;
+    opacity: 0.8;
+    width: 250px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.card__trailer-link {
+    font-size: 14px;
+    color: #000;
 }
 
 .card__info {
@@ -16,6 +35,13 @@
     row-gap: 10px;
 }
 
+.card__image {
+    width: 270px;
+    height: 151px;
+    border-radius:  10px 10px 0 0;
+    object-fit: cover;
+}
+
 .card__name {
     margin: 0;
     grid-column-start: 1;
@@ -25,6 +51,9 @@
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .card__duration {
@@ -50,8 +79,16 @@
     border: 3px solid #fff;
     background-color: #F9F9F9;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.09);
+    cursor: pointer;
 }
 
 .card__select_active {
     background-color: #2BE080;
+}
+
+.card__delete {
+    background-image: url('../../images/delete.svg');
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }

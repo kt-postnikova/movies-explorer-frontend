@@ -15,9 +15,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && scp -r ./build/* kt-postnikova@178.154.223.79:/home/kt-postnikova/movies-explorer-frontend"
+    "deploy": "npm run build && scp -r ./build/* kt-postnikova@51.250.5.141:/home/kt-postnikova/movies-explorer-frontend"
   },
   "eslintConfig": {
     "extends": [
@@ -36,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest": "^26.6.0"
   }
 }

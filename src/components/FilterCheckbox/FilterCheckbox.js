@@ -1,13 +1,14 @@
 import React from 'react';
 
-function FilterCheckbox(params) {
+function FilterCheckbox({ onChecked, isChecked }) {
+
     return (
-        <div className="checkbox container">
+        <div className="checkbox-container container">
             <label className="checkbox__label">
-                <input type="checkbox" />
-                <span className="checkbox__span"></span>
+                <input type="checkbox" onChange={onChecked} checked={isChecked} />
+                <div className="checkbox__checkmark"></div>
             </label>
-            <p className="checkbox__name">Короткометражки</p>
+            <div className="checkbox__body">Короткометражки</div>
         </div>
     )
 }
